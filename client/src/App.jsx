@@ -11,12 +11,12 @@ function App() {
     wordCount: '500'
   })
 
-  const apiUrl = window.location.href
+  const apiUrl = "https://article-creator-u1ch.onrender.com"
 
   const submitHandle = e => {
     e.preventDefault()
     setLoading(true)
-    fetch(`${apiUrl}create-article`, {
+    fetch(`${apiUrl}/create-article`, {
       method: 'post',
       headers: {
         "Content-type": "application/json",
