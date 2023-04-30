@@ -11,7 +11,7 @@ function App() {
     wordCount: '500'
   })
 
-  const apiUrl = "https://article-creator-u1ch.onrender.com"
+  const apiUrl = "http://localhost:3000"
 
   const submitHandle = e => {
     e.preventDefault()
@@ -43,8 +43,8 @@ function App() {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    });
-  };
+    })
+  }
 
   const isDisabled = Object.values(formData).some(value => !value) || loading
 
@@ -104,7 +104,7 @@ function App() {
               <option value="250">250</option>
               <option value="500">500</option>
               <option value="750">750</option>
-              <option value="750">750</option>
+              <option value="1000">1000</option>
             </select>
           </label>
         </div>
@@ -122,20 +122,11 @@ function App() {
         <div className="mb-10">
           <section className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <header className="text-lg text-gray-500 border-b mb-3 pb-3">
-                
                 <div>
                   Makale Çıktısı
                 </div>
-                <div>
-                  <button
-                    onClick={copyToClipboard}
-                    className="py-2.5 px-5 mr-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600"
-                  >
-                    Kopyala
-                  </button>
-                </div>
               </header>
-            <div id="generatedArticle" dangerouslySetInnerHTML={{ __html: article }}></div>
+            <div dangerouslySetInnerHTML={{ __html: article }}></div>
           </section> 
         </div>
       )}

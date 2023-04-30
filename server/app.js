@@ -8,11 +8,11 @@ const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-const openaiConfiguration = new OpenAIApi(configuration);
+const openai = new OpenAIApi(configuration);
 
 const app = express()
 
-app.use(express.static(path.join(new URL(import.meta.url).pathname, '../dist')));
+app.use(express.static(path.join(new URL(import.meta.url).pathname, '../dist')))
 
 app.use(cors())
 
@@ -20,14 +20,14 @@ app.use(express.json())
 
 app.get('/', (req, res) => {
     res.sendFile(
-        path.join(new URL(import.meta.url).pathname, '../dist', 'index.html'));
-});
+        path.join(new URL(import.meta.url).pathname, '../dist', 'index.html'))
+})
 
 app.post('/create-article', async (req, res) => {
 
-    const systemPrompt = "Carefully fulfill the user's requests from you. Completely follow all given commands.";
+    const systemPrompt = "Carefully fulfill the user's requests from you. Completely follow all given commands."
 
-    const completion = await openaiConfiguration.createChatCompletion({
+    const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
             {
@@ -84,9 +84,6 @@ app.post('/create-article', async (req, res) => {
         ],
     });
 
-    console.log(completion);
-
-    console.log(req.body)
     res.send(completion.data.choices[0].message)
 })
 
