@@ -11,12 +11,12 @@ function App() {
     wordCount: '500'
   })
 
-  const apiUrl = "http://localhost:3000"
+  const apiUrl = window.location.href
 
   const submitHandle = e => {
     e.preventDefault()
     setLoading(true)
-    fetch(`${apiUrl}/create-article`, {
+    fetch(`${apiUrl}create-article`, {
       method: 'post',
       headers: {
         "Content-type": "application/json",
